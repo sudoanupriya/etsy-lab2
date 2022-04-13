@@ -5,9 +5,33 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
 router.get(
-  "/:id",
+  "/:userID",
   passport.authenticate("jwt", { session: false }),
   UserController.getUserDetails
+);
+
+router.put(
+  "/:userID",
+  passport.authenticate("jwt", { session: false }),
+  UserController.updateUserDetails
+);
+
+router.put(
+  "/updatecurrency/:userID",
+  passport.authenticate("jwt", { session: false }),
+  UserController.updateCurrency
+);
+
+router.get(
+  "/getFav/:userID",
+  passport.authenticate("jwt", { session: false }),
+  UserController.getFavourites
+);
+
+router.put(
+  "/addFav/:userID",
+  passport.authenticate("jwt", { session: false }),
+  UserController.addFavourites
 );
 
 module.exports = router;
