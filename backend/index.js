@@ -3,10 +3,15 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
+require("./config/passport-config");
 //================================importing routes================================
 const testAPI = require("./routes/test_route");
 const registerRoute = require("./routes/registerRoute");
 const loginRoute = require("./routes/loginRoute");
+const userRoute = require("./routes/userRoute");
+const shopRoute = require("./routes/shopRoute");
 //================================start of config================================
 dotenv.config();
 
@@ -18,6 +23,7 @@ const DBNAME = process.env.DBNAME;
 
 const app = express();
 app.use(express.json());
+app.use(passport.initialize());
 
 app.use(
   cors({
@@ -37,7 +43,13 @@ app.listen(PORT, () => {
 //================================connecting to mongoDB================================
 //const mongoURI = `mongodb+srv://etsy-clone-user-1:${PASSWORD}@${DBNAME}.lumj7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const mongoURI = `mongodb+srv://etsy-clone-user-1:${PASSWORD}@${CLUSTER}.mongodb.net/${DBNAME}?retryWrites=true&w=majority`;
-//const mongoURI3 = `mongodb+srv://etsy-clone-user-1:Somil@54321@etsy-clone-mern-stack-c.lumj7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const localMongoURI = `mongodb://127.0.0.1:27017/${DBNAME}`;
+let options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  maxPoolSize: 500,
+  wtimeoutMS: 2500,
+};
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
 });
@@ -72,3 +84,6 @@ app.use("/api/v1/", testAPI);
 //================================actual apis================================
 app.use("/api/v1/register", registerRoute);
 app.use("/api/v1/login", loginRoute);
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/shop", shopRoute);
+
