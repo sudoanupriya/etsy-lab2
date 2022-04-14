@@ -9,7 +9,7 @@ let orderSchema = new Schema({
       itemID: { type: mongoose.Schema.Types.ObjectId, ref: "Item" },
       quantity: { type: Number },
       giftPacked: { type: Boolean },
-      description: { type: String },
+      instructions: { type: String },
     },
   ],
 });
