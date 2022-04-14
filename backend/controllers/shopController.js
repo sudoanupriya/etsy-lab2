@@ -64,9 +64,7 @@ module.exports = class ShopController {
     //get shop details (shopName, shopDp), owner details(), items(list of item objects)
     static async getShopDetails(req, res) {
         const shopName = req.params.shopName;
-
         const shopDetailsObjs = {};
-
 
         try {
             //get single object of user
@@ -89,7 +87,7 @@ module.exports = class ShopController {
         } catch (e) {
             console.log(e)
             res.statusMessage = e;
-            res.sendStatus(500);
+            res.send(500);
         }
     }
 };

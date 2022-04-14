@@ -12,6 +12,7 @@ const registerRoute = require("./routes/registerRoute");
 const loginRoute = require("./routes/loginRoute");
 const userRoute = require("./routes/userRoute");
 const shopRoute = require("./routes/shopRoute");
+const constantsRoute = require("./routes/constantsRoute");
 //================================start of config================================
 dotenv.config();
 
@@ -86,4 +87,5 @@ app.use("/api/v1/register", registerRoute);
 app.use("/api/v1/login", loginRoute);
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/shop", shopRoute);
+app.use("/api/v1/constants", constantsRoute);
 

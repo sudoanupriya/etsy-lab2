@@ -13,16 +13,15 @@ let userSchema = new Schema({
   address: { type: String },
   about: { type: String },
   phoneNumber: { type: String },
-  currencyID: { type: String },
+  currencyID: { type: String, default: "USD" },
   shopName: { type: String },
-  shopDp: {type: String},
   userDefinedCategories: [
     {
       type: String,
     },
   ],
-  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item" }],
-  favourites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item" }],
+  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "item" }],
+  favourites: [{ type: mongoose.Schema.Types.ObjectId, ref: "item" }],
 });
 const userModel = mongoose.model("user", userSchema);
 module.exports = userModel;

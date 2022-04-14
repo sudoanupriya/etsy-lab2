@@ -34,4 +34,40 @@ router.put(
   UserController.addFavourites
 );
 
+router.put(
+  "/removeFav/:userID",
+  passport.authenticate("jwt", { session: false }),
+  UserController.removeFavourites
+);
+
+router.get(
+  "/cart/:userID",
+  passport.authenticate("jwt", { session: false }),
+  UserController.getCartItems
+);
+
+router.post(
+  "/cart/:userID",
+  passport.authenticate("jwt", { session: false }),
+  UserController.addCartItems
+);
+
+router.post(
+  "/removeFromCart/:userID",
+  passport.authenticate("jwt", { session: false }),
+  UserController.removeCartItems
+);
+
+router.post(
+  "/decrementCartItemQuantity/:userID",
+  passport.authenticate("jwt", { session: false }),
+  UserController.decrementCartItemQuantity
+);
+
+router.get(
+  "/getCategories/:userID",
+  passport.authenticate("jwt", { session: false }),
+  UserController.getCategories
+);
+
 module.exports = router;
