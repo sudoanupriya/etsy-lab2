@@ -12,12 +12,15 @@ module.exports = class ShopController {
         let { shopName, id } = req.body;
 
         try {
-            if (await SERVICE.shopExists(shopName)) {
+            let shopExisits = await SERVICE.shopExists(shopName);
+            console.log(shopExisits);
+            if (shopExisits) {
+                console.log(".");
                 res.statusMessage = "Shop name already taken by a user";
                 res.sendStatus(409).end();
             }
             else {
-                SERVICE.addShop(id, shopName);
+                await SERVICE.addShop(id, shopName);
                 res.statusMessage = "SHOP " + shopName + " CREATED";
                 res.sendStatus(200).end();
             }

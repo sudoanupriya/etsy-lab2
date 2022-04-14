@@ -1,22 +1,25 @@
 const USER = require("../models/userModel");
 
 module.exports = class ShopService {
-    static shopExists(shopName) {
-        USER.find({ shopName }).exec().then((users) => {
-            console.log("USERS FOUND :", users);
-            if (users.length == 1) {
-                console.log("t");
-                return true;
-            }
-            else if (users.length == 0) {
-                console.log("f");
-                return false;
-            }
-            else {
-                throw "More then one users with shopName " + shopName;
-            }
+    static async shopExists(shopName) {
+        let result = USER.find({ shopName }).exec();
+        // .then((users) => {
+        //     console.log("USERS FOUND :", users);
+        //     if (users.length == 1) {
+        //         console.log("t");
+        //         result = true;
+        //     }
+        //     else if (users.length == 0) {
+        //         console.log("f");
+        //         result = false;
+        //     }
+        //     else {
+        //         throw "More then one users with shopName " + shopName;
+        //     }
 
-        })
+        // })
+        console.log(result);
+        return result;
     }
 
     static async addShop(id, shopName) {
