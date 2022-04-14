@@ -15,6 +15,7 @@ let userSchema = new Schema({
   phoneNumber: { type: String },
   currencyID: { type: String },
   shopName: { type: String },
+  shopDp: {type: String},
   userDefinedCategories: [
     {
       type: String,
