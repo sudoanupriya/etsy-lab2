@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controllers/shopController");
+const controller = require("../controllers/itemController");
 const imageController = require("../controllers/imageController");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const multer = require('multer');
 const upload = multer({ dest: '../uploads/' });
 
-router.post("/", passport.authenticate("jwt", { session: false }), controller.createShop);
-router.post("/addItem", passport.authenticate("jwt", { session: false }), controller.addItem);
-router.post("/updateItem", passport.authenticate("jwt", { session: false }), controller.updateItem);
-router.get("/:shopName", passport.authenticate("jwt", { session: false }), controller.getShopDetails);
+router.get("/getAll/:userId", passport.authenticate("jwt", { session: false }), controller.getAll);
+router.get("/search/:search?", passport.authenticate("jwt", { session: false }), controller.getItemsAfterSearch);
+router.get("/filter", passport.authenticate("jwt", { session: false }), controller.getItemsAfterFilter);
+router.get("/:itemId", passport.authenticate("jwt", { session: false }), controller.getItem);
 router.post("/dp/upload", passport.authenticate("jwt", { session: false }), upload.single("image"), imageController.uploadDp);
 router.get("/dp/:key", passport.authenticate("jwt", { session: false }), imageController.getDp);
 

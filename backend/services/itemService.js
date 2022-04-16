@@ -27,8 +27,8 @@ module.exports = class ItemService {
         console.log(query);
         let itemObj = {};
         return new Promise(function (resolve, reject) {
-            ITEM.find(query).then((res => {
-                console.log("ITEMS returned : ", res);
+            ITEM.find(query).lean().then((res => {
+                //console.log("ITEMS returned : ", res);
                 if (res) {
                     console.log(res.length, "ITEMS LOADED");
                     itemObj = res;
@@ -38,6 +38,18 @@ module.exports = class ItemService {
                 }
             })).catch(err => { throw err });
         })
+    }
+
+    static async markFavourteItems(items, favIds) {
+        
+        items.forEach((item, index) => {
+            const found = favIds.some(id => {
+                return id === item._id
+            });
+            // console.log(found);
+            item.favourited = found ? true : false;
+        })
+        return items;
     }
 
 }

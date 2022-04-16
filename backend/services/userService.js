@@ -126,7 +126,7 @@ module.exports = class UserService {
 
   static async getUserbyParameter(param, val){
     const query = { [param] : val };
-    //console.log(query);
+    console.log(query);
     let userObj = {};
     return new Promise(function (resolve, reject){
       UserModel.findOne(query).then((res)=>{
