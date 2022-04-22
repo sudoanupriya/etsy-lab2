@@ -10,7 +10,7 @@ const USERMODEL = constants.models.user;
 
 module.exports = class itemController {
   static async getAll(req, resp) {
-    const userID = req.params.userId;
+    const userID = req.params.userID;
     const queryVal = { $ne: [userID] };
     if (!userID) {
       return resp.status(400).send({
@@ -114,10 +114,10 @@ module.exports = class itemController {
 
   static async getItem(req, res) {
     try {
-      const itemId = req.params.itemId;
+      const itemID = req.params.itemID;
       const param = ITEMMODEL.id;
-      if (itemId) {
-        let data = { param, val: itemId };
+      if (itemID) {
+        let data = { param, val: itemID };
         let message = { function: "getItemsbyParamter", data: data };
         kafka.make_request(
           "topic-item-get-all-items",

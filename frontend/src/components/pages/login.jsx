@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from '../../config/config';
+import api from '../../config/config';
 import { PrimaryButton, TextField, Stack } from '@fluentui/react';
 import "./styles.css";
 import { useState } from 'react';
@@ -14,7 +14,7 @@ const Login = () => {
     const LOGIN = ()=>{
         console.log(password, emailID);
         const data = {emailID, password};
-        axios.post(CONSTANTS.API.LOGIN, data).then(res=>{
+        api.post(CONSTANTS.API.LOGIN, data).then(res=>{
             if(res && res.data && res.status == 201){
                 const user = res.data.user;
                 const token = res.data.token;

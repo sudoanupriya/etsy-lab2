@@ -3,6 +3,9 @@ const router = express.Router();
 const UserController = require("../controllers/userController");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
+const imageController = require("../controllers/imageController");
+const multer = require('multer');
+const upload = multer({ dest: '../uploads/' });
 
 router.get(
   "/:userID",
@@ -76,4 +79,6 @@ router.post(
   UserController.addUserDefinedCategories
 );
 
+router.post("/dp/upload", passport.authenticate("jwt", { session: false }), upload.single("image"), imageController.uploadDp);
+router.get("/dp/:key", passport.authenticate("jwt", { session: false }), imageController.getDp);
 module.exports = router;
