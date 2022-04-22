@@ -1,0 +1,25 @@
+{
+ "baseURL" : "http://localhost",
+ "port": ":3001",
+ "API":{
+    "LOGIN": "/api/v1/login",
+    "REGISTER": "/api/v1/register",
+    "ITEM": {
+        "GETALL" : "/api/v1/item/getall/${userID}",
+        "GETITEM" : "/api/v1/item/${itemID}",
+        "GETITEMSFILTER" : "/api/v1/item/filter?minPrice=${minPrice}&maxPrice=${maxPrice}",
+        "GETITEMSSEARCH" : "/api/v1/item/search/${search}"
+    },
+    "SHOP":{
+        "CREATESHOP" : "/api/v1/api/v1/shop",
+        "ADDITEM": "/api/v1/shop/addItem",
+        "UPDATEITEM": "/api/v1/shop/updateItem",
+        "GETSHOPDETAILS" : "/shop/${shopName}",
+        "UPLOADDP" : "/shop/dp/upload",
+        "GETDP": "/shop/dp/${key}"
+    }
+ },
+ "PAGE" : {
+     "HOME" : "/"
+ }
+}
