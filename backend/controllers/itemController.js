@@ -1,6 +1,4 @@
-const express = require("express");
-const SERVICE = require("../services/itemService");
-const USERSERVICE = require("../services/userService");
+
 const constants = require("../constants.json");
 const { uploadFile, getFileStream } = require("../config/s3.config.js");
 const kafka = require("../kafka/client");
