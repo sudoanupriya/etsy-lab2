@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './styles.css'
 import { SearchBox } from '@fluentui/react/lib/SearchBox';
-const Search = ({ search, setSearch, searchItems }) => {
+const Search = ({ search, setSearch, handleSearchClick }) => {
     // const onChange = e => setSearchVal(e.target.value);
     // const onSubmit = evt => {
     //     evt.preventDefault();
@@ -14,11 +14,11 @@ const Search = ({ search, setSearch, searchItems }) => {
     // };
 
     return (
-        <div>
+        <div >
             <SearchBox
                 styles={{ root: { width: 1300, borderWidth:2, borderRadius: "15px" } }}
                 placeholder="Search"
-                onSearch={newValue => searchItems()}
+                onSearch={newValue => handleSearchClick()}
                 onChange={(_, newValue) => setSearch(newValue)}
             />
 

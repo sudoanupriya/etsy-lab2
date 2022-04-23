@@ -1,13 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import api from '../../config/config';
 import { PrimaryButton, TextField, Stack } from '@fluentui/react';
 import "./styles.css";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../redux/actions';
 const CONSTANTS =  require("../../config/constants.json");
 
 const Login = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [password, setPwd]=useState();
     const [emailID, setEmail]=useState();
 
@@ -18,9 +21,11 @@ const Login = () => {
             if(res && res.data && res.status == 201){
                 const user = res.data.user;
                 const token = res.data.token;
+                dispatch(loginUser(user));
                 localStorage.setItem("token",token);
                 delete res.data.token;
                 localStorage.setItem("user",JSON.stringify(user));
+                
                 console.log(CONSTANTS.PAGE.HOME);
                 navigate("/search", {replace: true});
             }

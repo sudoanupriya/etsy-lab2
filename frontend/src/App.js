@@ -7,7 +7,9 @@ import Search from "./components/UI/atoms/search"
 import Footer from "./components/UI/molecules/footer";
 import NavBar from "./components/UI/molecules/NavBar";
 import Login from "./components/pages/login";
+import ItemOverview from "./components/pages/itemOverview";
 import Home from "./components/pages/home";
+import User from "./components/pages/user";
 function App() {
 
   //TODO: why is below not working?
@@ -23,6 +25,10 @@ function App() {
         <Route exact path="/search" element={<Search />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/home" element={<Home />} />
+        <Route exact path="/item/:itemID" element={<ItemOverview />} />
+        <Route exact path="/user/:userID" element={<User />} />
+        <Route exact path="/shop" element={<User />} />
+        <Route exact path="/shop/:shopName" element={<User />} />
         <Route exact path="/" element={<Home />} />
       </Routes>
         

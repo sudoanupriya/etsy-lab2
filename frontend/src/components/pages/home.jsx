@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import api from "../../config/config";
-import ItemCard from "../UI/molecules/item";
+import Filter from "../UI/molecules/filter";
+import DisplayItems from "../UI/molecules/displayItems";
 const CONSTANTS = require('../../config/constants.json');
 
 const Home = () => {
@@ -21,15 +22,14 @@ const Home = () => {
             }, err => { console.log(err) });
     }
 
-    useEffect(getItems,[]);
+    useEffect(getItems, []);
     return (
-        <div>HOME
-            <div>
-            {items && items.map((eachItem, index) => {
-                console.log("IN HOME",eachItem);
-                <ItemCard item={eachItem} index={index} />
-            })}
+        <div>
+            <div className="filter">
+                <Filter />
             </div>
+
+            <DisplayItems items={items} />
         </div>
     );
 }

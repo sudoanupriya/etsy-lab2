@@ -19,9 +19,35 @@
         "GETSHOPDETAILS" : "/api/v1/shop/{shopName}",
         "UPLOADDP" : "/api/v1/shop/dp/upload",
         "GETDP": "/api/v1/shop/dp/{key}"
-    }
+    },
+    "USER": {
+        "GETUSER" : "/api/v1/user/{userID}",
+        "UPDATEUSER" : "/api/v1/user/{userID}",
+        "UPDATECURRENCY" : "/api/v1/user/updatecurrency/{userID}",
+        "GETFAV" : "/api/v1/user/getFav/{userID}",
+        "ADDFAV" : "/api/v1/user/addFav/{userID}",
+        "REMOVEFAV" : "/api/v1/user/removeFav/{userID}",
+        "GETCART" : "/api/v1/user/cart/{userID}",
+        "ADDCARTITEM" : "/api/v1/user/cart/{userID}",
+        "REMOVECARTITEM" : "/api/v1/user/removeFromCart/{userID}",
+        "DECREMENTCARTITEM" : "/api/v1/user/decrementCartItemQuantity/{userID}",
+        "INCREMENTCARTITEM" : "/api/v1/user/",
+        "GETUSERCATEGORIES" : "/api/v1/user/getCategories/{userID}",
+        "ADDUSERCATEGORY" : "/api/v1/user/category/add/{userID}",
+        "UPLOADDP" : "/api/v1/user/dp/upload",
+        "GETDP": "/api/v1/user/dp/{key}"
+    },
+    "CONSTANTS": {
+        "GETCOUNTRIES" : "/api/v1/constants/countries",
+        "GETCATEGORIES" : "/api/v1/constants/categories",
+        "GETCURRENCIES" : "/api/v1/constants/currencies"
+    } 
  },
  "PAGE" : {
-     "HOME" : "/"
+     "HOME" : "/home",
+     "ITEM" : "/item/{itemID}",
+     "USER" : "/user/{userID}",
+     "CREATESHOP" : "/shop",
+     "SHOPHOME" : "/shop/{shopName}"
  }
 }
