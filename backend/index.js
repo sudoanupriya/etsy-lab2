@@ -90,4 +90,5 @@ app.use("/api/v1/user", userRoute);
 app.use("/api/v1/shop", shopRoute);
 app.use("/api/v1/constants", constantsRoute);
 app.use("/api/v1/item", itemRoute);
+app.use("/api/v1/item", orderRoute);
 
