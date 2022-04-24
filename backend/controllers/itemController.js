@@ -151,7 +151,8 @@ module.exports = class itemController {
   }
 
   static async getItemsAfterFilter(req, res) {
-    console.log(req);
+    console.log(req.user);
+    const {userID} = req.params;
     const minPrice = req.query.minPrice;
     const maxPrice = req.query.maxPrice;
     const param = ITEMMODEL.price;
@@ -160,7 +161,7 @@ module.exports = class itemController {
 
     if (maxPrice && minPrice) {
       try {
-        let data = { param, val: query };
+        let data = { userID, param, val: query };
         let message = { function: "getItemsbyParamter", data: data };
         kafka.make_request(
           "topic-item-get-items-after-filter",
@@ -194,6 +195,7 @@ module.exports = class itemController {
 
   static async getItemsAfterSearch(req, res) {
     try {
+      const {userID} = req.params;
       const search = req.params.search;
       const param = ITEMMODEL.name;
       const query = { $regex: search, $options: "i" };
@@ -204,7 +206,7 @@ module.exports = class itemController {
           data: "Search phrase missing.",
         });
       }
-      let data = { param, val: query };
+      let data = { userID, param, val: query };
       let message = { function: "getItemsbyParamter", data };
       kafka.make_request(
         "topic-item-get-items-after-search",

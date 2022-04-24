@@ -24,8 +24,8 @@ class ItemService {
     });
   }
 
-  static async getItemsbyParamter({ param, val }, callback) {
-    const query = { [param]: val };
+  static async getItemsbyParamter({ param, val, userID }, callback) {
+    const query = { [param]: val, userID: {$ne: userID } };
     // const query = { userID: "625f849c8fb5cea7f52894e5" };
     console.log("the query in getItemsbyParameter is", query);
     let itemObj = {};

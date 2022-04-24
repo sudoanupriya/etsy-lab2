@@ -8,8 +8,8 @@ const multer = require('multer');
 const upload = multer({ dest: '../uploads/' });
 
 router.get("/getAll/:userID", passport.authenticate("jwt", { session: false }), controller.getAll);
-router.get("/search/:search?", passport.authenticate("jwt", { session: false }), controller.getItemsAfterSearch);
-router.get("/filter", passport.authenticate("jwt", { session: false }), controller.getItemsAfterFilter);
+router.get("/filter/:userID", passport.authenticate("jwt", { session: false }), controller.getItemsAfterFilter);
+router.get("/search/:userID/:search", passport.authenticate("jwt", { session: false }), controller.getItemsAfterSearch);
 router.get("/:itemID", passport.authenticate("jwt", { session: false }), controller.getItem);
 router.post("/dp/upload", passport.authenticate("jwt", { session: false }), upload.single("image"), imageController.uploadDp);
 router.get("/dp/:key", passport.authenticate("jwt", { session: false }), imageController.getDp);
