@@ -7,8 +7,8 @@
     "ITEM": {
         "GETALL" : "/api/v1/item/getall/{userID}",
         "GETITEM" : "/api/v1/item/{itemID}",
-        "GETITEMSFILTER" : "/api/v1/item/filter?minPrice={minPrice}&maxPrice={maxPrice}",
-        "GETITEMSSEARCH" : "/api/v1/item/search/{search}",
+        "GETITEMSFILTER" : "/api/v1/item/filter/{userID}?minPrice={minPrice}&maxPrice={maxPrice}",
+        "GETITEMSSEARCH" : "/api/v1/item/search/{userID}/{search}",
         "UPLOADDP" : "/api/v1/item/dp/upload",
         "GETDP": "/api/v1/item/dp/{key}"
     },
@@ -41,6 +41,10 @@
         "GETCOUNTRIES" : "/api/v1/constants/countries",
         "GETCATEGORIES" : "/api/v1/constants/categories",
         "GETCURRENCIES" : "/api/v1/constants/currencies"
+    },
+    "ORDER": {
+        "ADDORDER" : "/api/v1/order/addOrder",
+        "GETORDERS" :  "/api/v1/order/getOrders/{userID}"
     } 
  },
  "PAGE" : {
