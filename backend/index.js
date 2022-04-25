@@ -35,7 +35,7 @@ app.use(
       process.env.FRONTEND_IP_ADDRESS,
       process.env.LOCALHOST_FRONTEND_IP_ADDRESS,
     ],
-    // methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT"],
     credentials: true,
   })
 );

@@ -1,5 +1,5 @@
 {
- "baseURL" : "http://localhost",
+ "baseURL" : "http://184.169.234.30",
  "port": ":3001",
  "API":{
     "LOGIN": "/api/v1/login",
