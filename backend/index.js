@@ -46,7 +46,7 @@ app.listen(PORT, () => {
 
 //================================connecting to mongoDB================================
 //const mongoURI = `mongodb+srv://etsy-clone-user-1:${PASSWORD}@${DBNAME}.lumj7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-const mongoURI = `mongodb+srv://etsy-clone-user-1:${PASSWORD}@${CLUSTER}.mongodb.net/${DBNAME}?retryWrites=true&w=majority`;
+const mongoURI = `mongodb+srv://anupriya:${PASSWORD}@${CLUSTER}.mongodb.net/${DBNAME}?retryWrites=true&w=majority`;
 const localMongoURI = `mongodb://127.0.0.1:27017/${DBNAME}`;
 let options = {
   useNewUrlParser: true,
