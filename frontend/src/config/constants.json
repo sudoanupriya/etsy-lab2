@@ -44,14 +44,17 @@
     },
     "ORDER": {
         "ADDORDER" : "/api/v1/order/addOrder",
-        "GETORDERS" :  "/api/v1/order/getOrders/{userID}"
+        "GETORDERS" :  "/api/v1/order/getOrders/{userID}?page={page}&pageSize={pageSize}"
     } 
  },
  "PAGE" : {
+     "LOGIN":"/login",
      "HOME" : "/home",
      "ITEM" : "/item/{itemID}",
      "USER" : "/user/{userID}",
      "CREATESHOP" : "/shop",
-     "SHOPHOME" : "/shop/{shopName}"
+     "SHOPHOME" : "/shop/{shopName}",
+     "CART": "/cart",
+     "ORDERS": "/orders"
  }
 }

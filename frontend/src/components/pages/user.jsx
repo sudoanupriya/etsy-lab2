@@ -2,7 +2,7 @@ import { Stack } from "@fluentui/react";
 import { useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../../config/config";
 import Favourites from "../UI/molecules/favourites";
 import UserProfile from "../UI/molecules/userProfile";
@@ -32,6 +32,14 @@ const User = () => {
 
 
     // }, [])
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            navigate(CONSTANTS.PAGE.LOGIN, { replace: true });
+        }
+    }, []);
 
     return (
         <div>

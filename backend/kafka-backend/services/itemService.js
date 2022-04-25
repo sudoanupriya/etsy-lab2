@@ -50,7 +50,7 @@ class ItemService {
 
   static async markFavourteItems({ items, favIds }, callback) {
     items.forEach((item, index) => {
-      const found = favIds.some((id) => {
+      const found = favIds?.some((id) => {
         return id === item._id;
       });
       // console.log(found);

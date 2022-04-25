@@ -4,7 +4,9 @@ class RegisterService {
   static async checkIfTheUserIsUnique(emailID, callback) {
     const query = { emailID };
     try {
+      console.log("IN REGISTER SERVICE", query);
       let result = await UserModel.findOne(query);
+      console.log(result);
       result = result == null ? true : false;
       callback(null, result);
     } catch (error) {
@@ -12,12 +14,13 @@ class RegisterService {
     }
   }
 
-  static async createUser({ name, emailID, password }, callback) {
+  static async createUser({ name, emailID, password, shopName }, callback) {
     try {
       const query = {
         name,
         emailID,
         password,
+        shopName
       };
       const user = new UserModel(query);
       let savedUser;

@@ -48,7 +48,9 @@ const PASSWORD = encodeURIComponent(process.env.PASSWORD);
 const CLUSTER = process.env.CLUSTER;
 const DBNAME = process.env.DBNAME;
 
-const mongoURI = `mongodb+srv://etsy-clone-user-1:${PASSWORD}@${CLUSTER}.mongodb.net/${DBNAME}?retryWrites=true&w=majority`;
+//const mongoURI = `mongodb+srv://etsy-clone-user-1:${PASSWORD}@${CLUSTER}.mongodb.net/${DBNAME}?retryWrites=true&w=majority`;
+const mongoURI = `mongodb+srv://anupriya:${PASSWORD}@${CLUSTER}.mongodb.net/${DBNAME}?retryWrites=true&w=majority`;
+//console.log(USERNAME, PASSWORD, CLUSTER, DBNAME);
 const localMongoURI = `mongodb://127.0.0.1:27017/${DBNAME}`;
 
 let options = {

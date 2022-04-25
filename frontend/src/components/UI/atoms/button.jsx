@@ -1,11 +1,15 @@
 import * as React from 'react';
-import {useNavigate} from "react-router-dom";
-import { AiOutlineShoppingCart, AiOutlineUser, AiFillEdit, AiOutlineHeart, AiOutlineShop } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import { AiOutlineLogout, AiOutlineShopping, AiOutlineShoppingCart, AiOutlineUser, AiFillEdit, AiOutlineHeart, AiOutlineShop } from "react-icons/ai";
 
 const Button = ({ buttonType, redirectUrl }) => {
     const navigate = useNavigate();
     function onIconClick() {
-       navigate(redirectUrl);
+        if (buttonType == "LOGOUT") {
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+        }
+        navigate(redirectUrl, { replace: true });
     }
     return (
         <div>
@@ -14,6 +18,8 @@ const Button = ({ buttonType, redirectUrl }) => {
             {(buttonType == "USER") && <AiOutlineUser fontSize={40} onClick={onIconClick} style={{ cursor: "pointer" }} />}
             {(buttonType == "FAV") && <AiOutlineHeart fontSize={40} onClick={onIconClick} style={{ cursor: "pointer" }} />}
             {(buttonType == "SHOP") && <AiOutlineShop fontSize={40} onClick={onIconClick} style={{ cursor: "pointer" }} />}
+            {(buttonType == "ORDERS") && <AiOutlineShopping fontSize={40} onClick={onIconClick} style={{ cursor: "pointer" }} />}
+            {(buttonType == "LOGOUT") && <AiOutlineLogout fontSize={40} onClick={onIconClick} style={{ cursor: "pointer" }} />}
         </div>
     )
 }

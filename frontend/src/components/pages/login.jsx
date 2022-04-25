@@ -6,30 +6,30 @@ import "./styles.css";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../redux/actions';
-const CONSTANTS =  require("../../config/constants.json");
+const CONSTANTS = require("../../config/constants.json");
 
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [password, setPwd]=useState();
-    const [emailID, setEmail]=useState();
+    const [password, setPwd] = useState();
+    const [emailID, setEmail] = useState();
 
-    const LOGIN = ()=>{
+    const LOGIN = () => {
         console.log(password, emailID);
-        const data = {emailID, password};
-        api.post(CONSTANTS.API.LOGIN, data).then(res=>{
-            if(res && res.data && res.status == 201){
+        const data = { emailID, password };
+        api.post(CONSTANTS.API.LOGIN, data).then(res => {
+            if (res && res.data && res.status == 201) {
                 const user = res.data.user;
                 const token = res.data.token;
                 dispatch(loginUser(user));
-                localStorage.setItem("token",token);
+                localStorage.setItem("token", token);
                 delete res.data.token;
-                localStorage.setItem("user",JSON.stringify(user));
-                
+                localStorage.setItem("user", JSON.stringify(user));
+
                 console.log(CONSTANTS.PAGE.HOME);
-                navigate("/search", {replace: true});
+                navigate(CONSTANTS.PAGE.HOME, { replace: true });
             }
-        }, err=>{
+        }, err => {
             console.log(err);
         });
     }
@@ -43,28 +43,25 @@ const Login = () => {
     };
 
     const validatePassword = (pw) => {
-        return true;
-        return /[A-Z]/.test(pw) &&
-            /[a-z]/.test(pw) &&
+        return /[a-z]/.test(pw) &&
             /[^A-Za-z0-9]/.test(pw) &&
             pw.length > 8;
     }
 
     const validPasswordInstructions = <ul>
-        <li>Password must have atleast one uppercase letter</li>
-        <li>Password must have atleast one uppercase letter</li>
-        <li>Password must have at least one lowercase letter</li>
+        <li>Password must have atleast one lowercase letter</li>
+        <li>Password must have at least one number letter</li>
         <li>Password should be more then 8 characters long</li></ul>
 
     return (
         <div>
             <Stack vertical tokens={{ childrenGap: 15 }} styles={{ root: { margin: "auto", width: "50%" } }}>
 
-                <TextField 
-                    label="Email" 
-                    onGetErrorMessage={(val) => { return (val.length > 0) ? validateEmail(val) ? "" : "Enter Valid Email" : '' }} 
-                    onChange={(e)=>setEmail(e.target.value)}
-                    required 
+                <TextField
+                    label="Email"
+                    onGetErrorMessage={(val) => { return (val.length > 0) ? validateEmail(val) ? "" : "Enter Valid Email" : '' }}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
                 />
                 <TextField
                     label="Password"
@@ -72,15 +69,11 @@ const Login = () => {
                     canRevealPassword
                     revealPasswordAriaLabel="Show password"
                     onGetErrorMessage={(val) => { return (val.length > 0) ? validatePassword(val) ? "" : validPasswordInstructions : '' }}
-                    onChange={(e)=>setPwd(e.target.value)}
+                    onChange={(e) => setPwd(e.target.value)}
                     required
                 />
-                <PrimaryButton text="Primary" onClick={LOGIN} />
+                <PrimaryButton text="Login" onClick={LOGIN} />
             </Stack>
-            <p> {CONSTANTS.API.ITEM.GETITEM.replace("{itemID}", 12345)}</p>
-
-
-
         </div>
     );
 }

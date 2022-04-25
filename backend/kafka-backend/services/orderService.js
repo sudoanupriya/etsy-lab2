@@ -13,9 +13,9 @@ class OrderService {
             .save()
             .then((res) => {
                 console.log("ORDER ADDED", res);
-                console.log("STARTING CLEAR CART:", query, newCart);
+                console.log("STARTING CLEAR CART AND UPDATE ITEM QUANTITIES");
                 USER.findOneAndUpdate(query, newCart, { upsert: true }).then(result => {
-                    console.log("AFTER CLEARING CART", result)
+                    console.log("UPDATED.")
                 }, err => { throw err; })
                 callback(null, res);
             })

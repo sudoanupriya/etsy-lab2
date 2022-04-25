@@ -9,6 +9,7 @@ module.exports = class RegisterController {
       name: req.body.name,
       emailID: req.body.emailID,
       password: req.body.password,
+      shopName: req.body.shopName
     };
     const returnMessage = {
       status: 404,

@@ -10,6 +10,8 @@ import Login from "./components/pages/login";
 import ItemOverview from "./components/pages/itemOverview";
 import Home from "./components/pages/home";
 import User from "./components/pages/user";
+import Cart from "./components/pages/cart";
+import Orders from "./components/pages/order";
 function App() {
 
   //TODO: why is below not working?
@@ -18,11 +20,10 @@ function App() {
   // }
   return (
     <div className="App">
-      <NavBar />
       {/* <BrowserRouter> */}
       <Routes>
-        <Route exact path="/btn" element={<Button buttonType={"USER"} redirectUrl={"https://stackoverflow.com/"} />} />
-        <Route exact path="/search" element={<Search />} />
+        <Route exact path="/cart" element={<Cart />} />
+        <Route exact path="/orders" element={<Orders />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/item/:itemID" element={<ItemOverview />} />
@@ -31,7 +32,7 @@ function App() {
         <Route exact path="/shop/:shopName" element={<User />} />
         <Route exact path="/" element={<Home />} />
       </Routes>
-        
+
       {/* </BrowserRouter> */}
     </div>
   );

@@ -5,7 +5,7 @@ const imageController = require("../controllers/imageController");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const multer = require('multer');
-const upload = multer({ dest: '../uploads/' });
+const upload = multer({ dest: './uploads/' });
 
 router.get("/getAll/:userID", passport.authenticate("jwt", { session: false }), controller.getAll);
 router.get("/filter/:userID", passport.authenticate("jwt", { session: false }), controller.getItemsAfterFilter);

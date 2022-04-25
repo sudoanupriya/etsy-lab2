@@ -11,7 +11,7 @@ class UserService {
     const userObj = {};
     try {
       const result = await UserModel.findOne(query);
-
+      console.log(result);
       if (result) {
         userObj.userFound = true;
         userObj.user = result;
@@ -19,12 +19,17 @@ class UserService {
         userObj.userFound = false;
       }
 
-      if (result.shopName) {
+      if (result?.shopName) {
         const data = { userID: result._id.toString() };
         const items = await UserService.getItems(data);
         if (items && items.itemFound) {
           userObj.items = items.items;
         }
+      }
+
+      if (result?.favourites.length > 0) {
+        const records = await ItemModel.find().where('_id').in(result.favourites).exec();
+        userObj.favouriteItems = records;
       }
       callback(null, userObj);
     } catch (error) {
@@ -121,6 +126,7 @@ class UserService {
     try {
       const filterCondition = { _id: userID };
       const updateCondition = { favourites: itemID };
+      console.log("ADDING TO FAVOURITES: ", itemID);
       const result = await UserModel.findOneAndUpdate(
         filterCondition,
         { $addToSet: updateCondition },
@@ -172,10 +178,34 @@ class UserService {
       console.log(result);
       if (result) {
         itemObj.cartFound = true;
-        itemObj.cart = result.cart;
+        let quantities = {};
+        itemObj.cart = [];
+        if (result.cart.length > 0) {
+          //get unique item count initem.Obj cart
+
+          result.cart.forEach((item) => {
+            quantities[item] = 1 + (quantities[item] || 0)
+          });
+
+          let tempCart = [...result.cart];
+          tempCart = [...new Set(tempCart)];
+          tempCart.map(itemID => itemID.toString());
+
+          const records = await ItemModel.find().where('_id').in(tempCart).lean().exec();
+
+          records.forEach((item, index) => {
+            const found = Object.keys(quantities).some((id) => {
+              if (id == item._id) {
+                item.cartQuantity = quantities[id]
+              }
+            });
+          });
+          itemObj.cart = records;
+        }
       } else {
         itemObj.cartFound = false;
       }
+      console.log("ITEMOBJ", itemObj);
       callback(null, itemObj);
     } catch (error) {
       console.log(

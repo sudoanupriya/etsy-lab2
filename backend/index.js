@@ -25,6 +25,7 @@ const CLUSTER = process.env.CLUSTER;
 const DBNAME = process.env.DBNAME;
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 

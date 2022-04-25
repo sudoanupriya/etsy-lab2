@@ -14,7 +14,7 @@ const Favourites = (props) => {
     const [fav, setFavs] = useState([]);
     const [search, setsearch] = useState('');
 
-    const handleSearchClick = () => {
+    const handleSearch = () => {
         alert(search);
     }
 
@@ -22,7 +22,7 @@ const Favourites = (props) => {
         <div>
             <Stack horizontal tokens={{childrenGap:15}}>
                 <h4 className="mainnavbar-title">Favourite Items</h4>
-                <Search search={search} setSearch={setsearch} handleSearchClick={handleSearchClick} />
+                <Search search={search} setSearch={setsearch} handleSearch={handleSearch} />
                 <p> {search} </p>
             </Stack>
             <DisplayItems items={favouriteDetails} />
