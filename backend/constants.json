@@ -1,4 +1,5 @@
 {
+    "jwtPrivateKey": "70160f27-0da0-4581-aedb-ea9a95f68893",
     "models": {
         "item": {
             "id": "_id",

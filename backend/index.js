@@ -6,7 +6,10 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 require("./config/passport-config");
+const {graphqlHTTP} = require('express-graphql');
+const schema = require('./graphql/schemas.js');
 //================================importing routes================================
+
 const testAPI = require("./routes/test_route");
 const registerRoute = require("./routes/registerRoute");
 const loginRoute = require("./routes/loginRoute");
@@ -39,6 +42,11 @@ app.use(
     credentials: true,
   })
 );
+
+app.use("/graphql",graphqlHTTP({
+  schema,
+  graphiql: true
+}));
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
