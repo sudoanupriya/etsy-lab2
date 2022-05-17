@@ -16,7 +16,8 @@ const ItemCard = ({ addToCart, item, type, currency, favourite, removeFavourite,
     const navigate = useNavigate();
     const userID = JSON.parse(localStorage.getItem("user"))._id;
     let itemID = item._id;
-    console.log("INSIDE ITEMCARD", item);
+    // console.log("INSIDE ITEMCARD");
+    // console.log(item);
     //const IMAGE_URL = "https://s3-us-west-1.amazonaws.com/etsy-clone-mern-stack/"+ item?.displayPicture;
     const IMAGE_URL = item.displayPicture;    
 

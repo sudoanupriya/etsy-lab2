@@ -18,11 +18,12 @@ const Home = () => {
     const [refresh, setRefresh] = useState(false);
 
     const handleSearch = () => {
-        //alert(search);
+        console.log("INIT ITEMS:", initItems);
         if (search !== "") {
             let filteredItems = initItems.filter(item => {
                 return item.name.includes(search);
             });
+            console.log("FILTERED ITEMS:", filteredItems);
             setItems(filteredItems);
         }
         else {

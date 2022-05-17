@@ -42,7 +42,7 @@ const CartItem = ({ item, type, handleGiftPacking, removeItem }) => {
                 
 
             </div>
-            {(type != "order") && <div class="product-line-price">{item.cartQuantity||1 * item.price}</div>}
+            {(type != "order") && <div class="product-line-price">{(item.cartQuantity||1) * item.price}</div>}
             {(type=="order")&& <p>{item.dop}</p>}
         </div>
     );
